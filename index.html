@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AVO Grass Cutter — คำสั่ง</title>
+<style>
+  :root{
+    --bg:#0f1a12; --card:#16241a; --card2:#1d3324; --line:#2c4a34;
+    --green:#7fd66a; --green2:#4caf50; --red:#ff6b6b; --yellow:#ffd166; --blue:#6cc7ff;
+    --text:#e6f0e6; --muted:#9fb8a3;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:linear-gradient(160deg,#0c1510,#12211a);color:var(--text);
+    font-family:"Segoe UI",Tahoma,system-ui,sans-serif;line-height:1.55;padding:0 0 60px}
+  header{padding:34px 20px 20px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(600px 200px at 50% -40px,rgba(127,214,106,.15),transparent)}
+  header h1{margin:0;font-size:30px;color:var(--green)}
+  header p{margin:6px 0 0;color:var(--muted)}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+  .search{display:block;width:100%;max-width:460px;margin:22px auto 4px;padding:11px 14px;border-radius:10px;
+    border:1px solid var(--line);background:#0e1a12;color:var(--text);font-size:15px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin-top:24px}
+  .col{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .col > h2{margin:0;padding:14px 18px;font-size:19px;display:flex;align-items:center;gap:9px;
+    border-bottom:1px solid var(--line)}
+  .help  > h2{color:var(--green);background:rgba(76,175,80,.10)}
+  .prank > h2{color:var(--red);background:rgba(255,107,107,.10)}
+  .cfg   > h2{color:var(--blue);background:rgba(108,199,255,.10)}
+  .col .body{padding:8px 12px 16px}
+  .tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:auto}
+  .tag.main{background:var(--yellow);color:#3a2c00}
+  .sub-h{font-size:12px;letter-spacing:.5px;color:var(--muted);margin:12px 6px 6px;text-transform:uppercase}
+  .cmd{padding:9px 12px;border-radius:9px;background:var(--card2);border:1px solid var(--line);margin:7px 0}
+  .cmd.big{border-color:var(--green2);background:rgba(76,175,80,.08)}
+  .cmd.big.p{border-color:#a34;background:rgba(255,107,107,.08)}
+  code{font-family:"JetBrains Mono",Consolas,monospace;font-size:13px;color:#cfeecb;
+    background:#0c140e;padding:2px 7px;border-radius:6px;display:inline-block;word-break:break-all}
+  .prank code{color:#ffd7d7}
+  .cfg code{color:#cfe8ff}
+  .desc{font-size:13px;color:var(--muted);margin-top:5px}
+  .note{margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+  .note h3{margin:0 0 8px;color:var(--yellow)}
+  .note ul{margin:6px 0;padding-left:20px;color:var(--muted)} .note li{margin:4px 0}
+  .pill{display:inline-block;background:#0c140e;border:1px solid var(--line);border-radius:20px;
+    padding:1px 9px;color:var(--green);font-size:12px;margin:0 2px}
+  footer{text-align:center;color:var(--muted);margin-top:34px;font-size:12px}
+  .hidden{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <h1>☘ AVO Grass Cutter</h1>
+  <p>คู่มือคำสั่ง — สตรีมเมอร์ตัดหญ้าให้หมด · คนดูส่งของ ช่วย / แกล้ง</p>
+</header>
+
+<div class="wrap">
+  <input class="search" id="q" placeholder="🔎 ค้นหาคำสั่ง เช่น autopilot, เพิ่มหญ้า, ขนาด…">
+
+  <div class="grid">
+
+    <!-- ช่วย -->
+    <section class="col help">
+      <h2>🟢 ช่วยสตรีมเมอร์ <span class="pill">/avog help</span></h2>
+      <div class="body">
+        <div class="sub-h">หลัก</div>
+        <div class="cmd big" data-k="autopilot ขับเอง อัตโนมัติ ช่วย">
+          <code>/avog help autopilot &lt;วิ|alltime|stop&gt;</code><span class="tag main">หลัก</span>
+          <div class="desc">ขับเองหาหญ้าตัดตรงๆ ไม่ต้องบังคับ · เช่น <code>autopilot alltime</code> = เปิดตลอด</div>
+        </div>
+        <div class="cmd big" data-k="ลบหญ้า ตัดหญ้า remove ช่วย">
+          <code>/avog help remove &lt;n&gt;</code><span class="tag main">หลัก</span>
+          <div class="desc">ลบ/ตัดหญ้าให้ฟรี n ต้น (ช่วยให้ชนะไว) · ไม่ใส่ = 50</div>
+        </div>
+
+        <div class="sub-h">รอง</div>
+        <div class="cmd" data-k="fastcut ตัดเร็ว กว้าง"><code>/avog help fastcut [วิ]</code><div class="desc">ตัดกว้าง+เร็วขึ้น</div></div>
+        <div class="cmd" data-k="magnet ตัดกว้าง"><code>/avog help magnet [วิ]</code><div class="desc">ตัดกว้างพิเศษ</div></div>
+        <div class="cmd" data-k="turbo วิ่งเร็ว"><code>/avog help turbo [วิ]</code><div class="desc">วิ่งเร็ว x2</div></div>
+        <div class="cmd" data-k="companion เสก sniffer ช่วยตัด"><code>/avog help companion [จำนวน]</code><div class="desc">เสก Sniffer มาช่วยตัด</div></div>
+        <div class="cmd" data-k="clear เคลียร์หญ้า"><code>/avog help clear</code><div class="desc">เคลียร์หญ้าหมดทันที</div></div>
+      </div>
+    </section>
+
+    <!-- แกล้ง -->
+    <section class="col prank">
+      <h2>🔴 แกล้งสตรีมเมอร์ <span class="pill" style="color:var(--red)">/avog prank</span></h2>
+      <div class="body">
+        <div class="sub-h">หลัก</div>
+        <div class="cmd big p" data-k="เพิ่มหญ้า grass แกล้ง">
+          <code>/avog prank grass &lt;n&gt;</code><span class="tag main">หลัก</span>
+          <div class="desc">เพิ่มหญ้าให้ตัด n ต้น (ค่อยๆ เกิดในที่ว่าง — คนดูได้แกล้ง!) · ไม่ใส่ = 50</div>
+        </div>
+        <div class="cmd big p" data-k="เพิ่มขนาด เขต กว้าง widen แกล้ง">
+          <code>/avog prank widen &lt;n&gt;</code><span class="tag main">หลัก</span>
+          <div class="desc">ขยายความกว้างเขต +n (ยาวคงเดิม) · สูงสุด 300 · ไม่รีเซ็ตหญ้า</div>
+        </div>
+
+        <div class="sub-h">รอง</div>
+        <div class="cmd" data-k="regrow หญ้างอกคืน"><code>/avog prank regrow</code><div class="desc">หญ้างอกคืน (ลบความคืบหน้า)</div></div>
+        <div class="cmd" data-k="runaway พยศ วิ่งมั่ว"><code>/avog prank runaway [วิ]</code><div class="desc">Sniffer พยศวิ่งมั่ว</div></div>
+        <div class="cmd" data-k="buck สะบัด ร่วง"><code>/avog prank buck</code><div class="desc">สะบัดผู้เล่นร่วง</div></div>
+        <div class="cmd" data-k="reverse กลับด้าน"><code>/avog prank reverse [วิ]</code><div class="desc">บังคับกลับด้าน</div></div>
+        <div class="cmd" data-k="tiny giant จิ๋ว ยักษ์"><code>/avog prank tiny|giant [วิ]</code><div class="desc">ตัวจิ๋ว / ตัวยักษ์</div></div>
+        <div class="cmd" data-k="blind ตาบอด"><code>/avog prank blind [วิ]</code><div class="desc">ตาบอด/หญ้าบังตา</div></div>
+        <div class="cmd" data-k="swarm ฝูง sniffer บุก"><code>/avog prank swarm [วิ]</code><div class="desc">ฝูง Sniffer บุก</div></div>
+        <div class="cmd" data-k="slip ลื่น"><code>/avog prank slip</code><div class="desc">ลื่นไถล</div></div>
+        <div class="cmd" data-k="shuffle สลับหญ้า"><code>/avog prank shuffle</code><div class="desc">สลับหญ้าใหม่</div></div>
+      </div>
+    </section>
+
+    <!-- ตั่งค่า -->
+    <section class="col cfg">
+      <h2>🔵 ตั่งค่าเกม <span class="pill" style="color:var(--blue)">/avog game</span></h2>
+      <div class="body">
+        <div class="sub-h">สนาม</div>
+        <div class="cmd" data-k="ขนาด size ตั่งขนาด"><code>/avog game size &lt;กว้าง&gt; [ยาว]</code><div class="desc">ตั้งขนาดฐาน เช่น <code>size 50 100</code></div></div>
+        <div class="cmd" data-k="width กว้าง เพิ่มลด"><code>/avog game width add|remove &lt;n&gt;</code><div class="desc">เพิ่ม/ลดความกว้าง (สูงสุด 300, ยาวคงเดิม)</div></div>
+        <div class="cmd" data-k="layout โหมด สนาม 2 เลน"><code>/avog game layout &lt;1|2&gt;</code><div class="desc">1 = สนามเดี่ยว · 2 = ฟาร์ม 2 เลน (dirt path กลาง)</div></div>
+        <div class="cmd" data-k="reset รีเซ็ต"><code>/avog game reset</code><div class="desc">รีเซ็ตกลับขนาดฐาน + หญ้าเต็ม</div></div>
+        <div class="cmd" data-k="sethere anchor ตั้งที่นี่"><code>/avog game sethere</code><div class="desc">ย้ายสนามมาตรงที่ยืน</div></div>
+
+        <div class="sub-h">หญ้า / เวลา</div>
+        <div class="cmd" data-k="grass total หญ้ารวม"><code>/avog game grass total &lt;n&gt;</code><div class="desc">ตั้งหญ้ารวมที่ต้องตัด</div></div>
+        <div class="cmd" data-k="grass ดูหญ้า"><code>/avog game grass</code><div class="desc">ดูหญ้ารวม / เหลือ / ตัดไป</div></div>
+        <div class="cmd" data-k="time เวลา นับถอยหลัง"><code>/avog time &lt;วิ&gt;</code><div class="desc">เวลานับถอยหลังตอนชนะ</div></div>
+        <div class="cmd" data-k="mode clear endless zen"><code>/avog game mode &lt;clear|endless|zen&gt;</code><div class="desc">โหมดเล่น</div></div>
+
+        <div class="sub-h">เครื่องตัด / อื่นๆ</div>
+        <div class="cmd" data-k="speed ความเร็ว"><code>/avog game speed &lt;v&gt;</code><div class="desc">ความเร็ว mower</div></div>
+        <div class="cmd" data-k="swath ความกว้างตัด"><code>/avog game swath &lt;w&gt;</code><div class="desc">ความกว้างการตัด</div></div>
+        <div class="cmd" data-k="info ดูข้อมูล"><code>/avog info</code><div class="desc">หญ้าทั้งหมด · ต้องตัด · ขนาดเขต</div></div>
+        <div class="cmd" data-k="start stop ride menu"><code>/avog start · stop · ride · menu</code><div class="desc">เริ่ม/หยุด · ขี่ · เปิดเมนู</div></div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="note">
+    <h3>⏱ เวลา / การซ้อน (help &amp; prank)</h3>
+    <ul>
+      <li>ใส่วินาทีต่อท้าย: <span class="pill">5</span> <span class="pill">10s</span> <span class="pill">30</span> — ซ้อนได้ (5+5+5 = 15 วิ)</li>
+      <li><span class="pill">alltime</span> = เปิดตลอดจนกว่าจะ <span class="pill">stop</span> · <span class="pill">reset</span>/<span class="pill">remove</span> = ล้าง</li>
+      <li>ระบุเป้าหมายท้ายสุดได้: <code>/avog help autopilot 10 ชื่อผู้เล่น</code></li>
+      <li>คนดูส่งผ่านระบบ relay → รู้สึกได้แกล้ง/ได้ช่วยจริง</li>
+    </ul>
+  </div>
+
+  <footer>AVO Grass Cutter · avox2 · หน้านี้เปิดไว้อ่านคำสั่งเฉยๆ (static)</footer>
+</div>
+
+<script>
+  const q = document.getElementById('q');
+  const cmds = [...document.querySelectorAll('.cmd')];
+  q.addEventListener('input', () => {
+    const t = q.value.trim().toLowerCase();
+    cmds.forEach(c => {
+      const hay = (c.dataset.k + ' ' + c.textContent).toLowerCase();
+      c.classList.toggle('hidden', t && !hay.includes(t));
+    });
+    document.querySelectorAll('.sub-h').forEach(h=>{
+      let n=h.nextElementSibling, any=false;
+      while(n && n.classList.contains('cmd')){ if(!n.classList.contains('hidden')) any=true; n=n.nextElementSibling; }
+      h.classList.toggle('hidden', t && !any);
+    });
+  });
+</script>
+</body>
+</html>
